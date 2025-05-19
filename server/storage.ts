@@ -619,41 +619,96 @@ export class MemStorage implements IStorage {
         stock: 40,
         image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
         categoryId: 1,
-        brand: "Brand XYZ",
+        brand: "DenimWorld",
         isFeatured: false
       },
       {
-        name: "Men's Classic Watch",
-        description: "Elegant classic watch for men.",
-        price: 3299,
-        discountPrice: null,
+        name: "Kid's Colorful T-Shirt",
+        description: "Soft and comfortable t-shirt for your little ones.",
+        price: 899,
+        discountPrice: 499,
+        stock: 80,
+        image: "https://images.unsplash.com/photo-1519278409-1f56fdda7fe5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 3,
+        brand: "KiddieComfort",
+        isFeatured: true
+      },
+      {
+        name: "Men's Formal Suit",
+        description: "Sharp and professional formal suit for special occasions.",
+        price: 4999,
+        discountPrice: 3999,
         stock: 25,
-        image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
-        categoryId: 5,
-        brand: "TimeX",
-        isFeatured: false
-      },
-      {
-        name: "Women's Casual Shoes",
-        description: "Comfortable casual shoes for everyday wear.",
-        price: 1899,
-        discountPrice: null,
-        stock: 35,
-        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
-        categoryId: 4,
-        brand: "Stepz",
-        isFeatured: false
-      },
-      {
-        name: "Men's Formal Shirt",
-        description: "Elegant formal shirt for special occasions.",
-        price: 1199,
-        discountPrice: null,
-        stock: 60,
-        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
         categoryId: 2,
-        brand: "FormalPlus",
+        brand: "EliteStyles",
         isFeatured: false
+      },
+      {
+        name: "Women's Workout Leggings",
+        description: "High-performance leggings for your workout sessions.",
+        price: 1299,
+        discountPrice: 799,
+        stock: 60,
+        image: "https://images.unsplash.com/photo-1602779300361-1ffb58f3e0a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 1,
+        brand: "FitLife",
+        isFeatured: true
+      },
+      {
+        name: "Kid's Winter Jacket",
+        description: "Warm and cozy winter jacket for kids.",
+        price: 1999,
+        discountPrice: 1499,
+        stock: 35,
+        image: "https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 3,
+        brand: "WarmKids",
+        isFeatured: false
+      },
+      {
+        name: "Men's Canvas Shoes",
+        description: "Casual canvas shoes for everyday comfort.",
+        price: 2499,
+        discountPrice: 1799,
+        stock: 45,
+        image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 4,
+        brand: "ComfortStep",
+        isFeatured: false
+      },
+      {
+        name: "Silver Necklace",
+        description: "Elegant silver necklace to elevate any outfit.",
+        price: 1899,
+        discountPrice: 1299,
+        stock: 30,
+        image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 5,
+        brand: "SilverGlow",
+        isFeatured: true
+      },
+      {
+        name: "Women's Summer Hat",
+        description: "Stylish summer hat for sun protection.",
+        price: 1199,
+        discountPrice: 799,
+        stock: 50,
+        image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 5,
+        brand: "SunStyle",
+        isFeatured: false
+      },
+      {
+        name: "Kid's Cartoon Backpack",
+        description: "Fun and colorful backpack for school or travel.",
+        price: 1499,
+        discountPrice: 999,
+        stock: 40,
+        image: "https://images.unsplash.com/photo-1541099648461-5a559e748372?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80",
+        categoryId: 3,
+        brand: "FunPack",
+        isFeatured: true
       }
     ];
 
