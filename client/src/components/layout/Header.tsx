@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useMobile } from "@/hooks/use-mobile";
+import LocationPicker from "./LocationPicker";
 
 interface CurrentUser {
   id: number;
@@ -74,6 +75,20 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 bg-white shadow-md z-40">
+      <div className="bg-gray-100 py-1">
+        <div className="container mx-auto px-4 flex justify-end text-xs font-medium">
+          <div className="flex items-center space-x-4">
+            <Link href="/order-tracking" className="text-foreground hover:text-primary transition-colors duration-200">
+              Track Order
+            </Link>
+            <span className="text-gray-400">|</span>
+            <Link href="/contact" className="text-foreground hover:text-primary transition-colors duration-200">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -96,22 +111,22 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <Link href="/" className="text-foreground hover:text-primary font-medium">
+            <Link href="/" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Home
             </Link>
-            <Link href="/products" className="text-foreground hover:text-primary font-medium">
+            <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Women
             </Link>
-            <Link href="/products" className="text-foreground hover:text-primary font-medium">
+            <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Men
             </Link>
-            <Link href="/products" className="text-foreground hover:text-primary font-medium">
+            <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Kids
             </Link>
-            <Link href="/products" className="text-foreground hover:text-primary font-medium">
+            <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Accessories
             </Link>
-            <Link href="/products?sale=true" className="text-foreground hover:text-primary font-medium">
+            <Link href="/products?sale=true" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
               Sale
             </Link>
           </nav>
@@ -137,24 +152,29 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center space-x-6">
+            {/* Location Picker */}
+            <div className="hidden md:block">
+              <LocationPicker />
+            </div>
+            
             {currentUser ? (
-              <Link href="/account" className="text-foreground hover:text-primary">
+              <Link href="/account" className="text-foreground hover:text-primary transition-transform duration-200 hover:scale-110">
                 <User size={24} />
               </Link>
             ) : (
-              <Link href="/login" className="text-foreground hover:text-primary">
+              <Link href="/login" className="text-foreground hover:text-primary transition-transform duration-200 hover:scale-110">
                 <User size={24} />
               </Link>
             )}
             
-            <Link href="/account?tab=wishlist" className="text-foreground hover:text-primary">
+            <Link href="/account?tab=wishlist" className="text-foreground hover:text-primary transition-transform duration-200 hover:scale-110">
               <Heart size={24} />
             </Link>
             
-            <Link href="/cart" className="text-foreground hover:text-primary relative">
+            <Link href="/cart" className="text-foreground hover:text-primary relative transition-transform duration-200 hover:scale-110">
               <ShoppingBag size={24} />
               {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
                   {cartItems.length}
                 </span>
               )}
@@ -165,7 +185,7 @@ const Header = () => {
 
       {/* Mobile Navigation (hidden by default) */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
+        <div className="lg:hidden bg-white border-t border-gray-200 animate-slideInDown">
           <div className="container mx-auto px-4 py-2">
             <form onSubmit={handleSearch} className="flex items-center relative mb-4">
               <Input
@@ -185,37 +205,41 @@ const Header = () => {
               </Button>
             </form>
             
+            <div className="mb-4">
+              <LocationPicker />
+            </div>
+            
             <nav className="flex flex-col space-y-3 pb-4">
-              <Link href="/" className="text-foreground hover:text-primary font-medium">
+              <Link href="/" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Home
               </Link>
-              <Link href="/products" className="text-foreground hover:text-primary font-medium">
+              <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Women
               </Link>
-              <Link href="/products" className="text-foreground hover:text-primary font-medium">
+              <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Men
               </Link>
-              <Link href="/products" className="text-foreground hover:text-primary font-medium">
+              <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Kids
               </Link>
-              <Link href="/products" className="text-foreground hover:text-primary font-medium">
+              <Link href="/products" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Accessories
               </Link>
-              <Link href="/products?sale=true" className="text-foreground hover:text-primary font-medium">
+              <Link href="/products?sale=true" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                 Sale
               </Link>
               
               {currentUser ? (
                 <>
-                  <Link href="/account" className="text-foreground hover:text-primary font-medium">
+                  <Link href="/account" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                     My Account
                   </Link>
-                  <Link href="/order-tracking" className="text-foreground hover:text-primary font-medium">
+                  <Link href="/order-tracking" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                     Track Order
                   </Link>
                   <Button 
                     variant="link" 
-                    className="justify-start p-0 h-auto font-medium text-foreground hover:text-primary"
+                    className="justify-start p-0 h-auto font-medium text-foreground hover:text-primary transition-colors duration-200"
                     onClick={() => logout()}
                   >
                     Logout
@@ -223,10 +247,10 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link href="/login" className="text-foreground hover:text-primary font-medium">
+                  <Link href="/login" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                     Login
                   </Link>
-                  <Link href="/register" className="text-foreground hover:text-primary font-medium">
+                  <Link href="/register" className="text-foreground hover:text-primary font-medium transition-colors duration-200">
                     Register
                   </Link>
                 </>
