@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useMobile } from "@/hooks/use-mobile";
-import LocationPicker from "./LocationPicker";
+import { LocationPicker } from "../location/LocationPicker";
 
 interface CurrentUser {
   id: number;
