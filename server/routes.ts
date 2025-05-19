@@ -1,6 +1,6 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./index";
 import { z } from "zod";
 import { 
   insertUserSchema, 
@@ -10,65 +10,8 @@ import {
   insertWishlistItemSchema,
   insertReviewSchema
 } from "@shared/schema";
-import session from "express-session";
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import MemoryStore from "memorystore";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  const MemoryStoreSession = MemoryStore(session);
-
-  // Configure session & authentication
-  app.use(
-    session({
-      secret: "fashion-express-secret",
-      resave: false,
-      saveUninitialized: false,
-      store: new MemoryStoreSession({
-        checkPeriod: 86400000, // Prune expired entries every 24h
-      }),
-      cookie: {
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      },
-    })
-  );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  // Passport local strategy
-  passport.use(
-    new LocalStrategy(async (username, password, done) => {
-      try {
-        const user = await storage.getUserByUsername(username);
-        if (!user) {
-          return done(null, false, { message: "Invalid username or password" });
-        }
-        
-        // In a real app, we would hash and compare passwords
-        if (user.password !== password) {
-          return done(null, false, { message: "Invalid username or password" });
-        }
-        
-        return done(null, user);
-      } catch (error) {
-        return done(error);
-      }
-    })
-  );
-
-  passport.serializeUser((user: any, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser(async (id: number, done) => {
-    try {
-      const user = await storage.getUser(id);
-      done(null, user);
-    } catch (error) {
-      done(error);
-    }
-  });
 
   // Auth middleware
   const isAuthenticated = (req: Request, res: Response, next: any) => {
