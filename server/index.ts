@@ -1,10 +1,75 @@
 import express, { type Request, Response, NextFunction } from "express";
+import session from "express-session";
+import ConnectPgSimple from "connect-pg-simple";
+import passport from "passport";
+import { Strategy as LocalStrategy } from "passport-local";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { DatabaseStorage } from "./database-storage";
+import { pool } from "./db";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Create database storage instance
+export const storage = new DatabaseStorage();
+
+// Setup PostgreSQL session store
+const PgSession = ConnectPgSimple(session);
+const sessionStore = new PgSession({
+  pool: pool,
+  tableName: 'session',
+  createTableIfMissing: true
+});
+
+// Session middleware
+app.use(
+  session({
+    store: sessionStore,
+    secret: "fashion-express-secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // 24 hours
+  })
+);
+
+// Initialize passport for authentication
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configure Local Strategy
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await storage.getUserByUsername(username);
+      if (!user) {
+        return done(null, false, { message: "Invalid username or password" });
+      }
+      if (user.password !== password) {
+        return done(null, false, { message: "Invalid username or password" });
+      }
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  })
+);
+
+// Serialize user to the session
+passport.serializeUser((user: any, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user from the session
+passport.deserializeUser(async (id: number, done) => {
+  try {
+    const user = await storage.getUser(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
