@@ -8,6 +8,8 @@ import OrderTracking from "@/components/home/OrderTracking";
 import Promotions from "@/components/home/Promotions";
 import AppDownload from "@/components/home/AppDownload";
 import CustomerReviews from "@/components/home/CustomerReviews";
+import AnnouncementBanner from "@/components/home/AnnouncementBanner";
+import PromotionalBanner from "@/components/home/PromotionalBanner";
 
 const Home = () => {
   return (
@@ -17,9 +19,13 @@ const Home = () => {
         <meta name="description" content="Shop the latest fashion trends with same-day delivery. FashionExpress brings the best of online shopping and fast delivery to your doorstep." />
       </Helmet>
       
+      <AnnouncementBanner />
       <HeroSection />
       <DeliveryPromise />
       <Categories />
+      <div className="my-12">
+        <PromotionalBanner />
+      </div>
       <TrendingProducts />
       <NewArrivals />
       <OrderTracking />
